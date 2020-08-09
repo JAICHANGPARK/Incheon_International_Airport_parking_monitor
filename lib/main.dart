@@ -41,18 +41,18 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+  int _selectedIndex = 0;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 //    fetchParkingData(APIServiceKey.API_KEY);
   }
-  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-     
       body:SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
