@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:incheon_airport_parking/model/parking.dart';
 import 'package:xml/xml.dart';
 
-Future fetchParkingData(String serviceKey) async {
+Future<List<Parking>> fetchParkingData(String serviceKey) async {
   var response = await http.get("http://openapi.airport.kr/openapi/service/StatusOfParking/getTrackingParking"
       "?ServiceKey=$serviceKey");
 
@@ -16,10 +16,12 @@ Future fetchParkingData(String serviceKey) async {
     print(document.toString());
     List<Parking> _parkingList = [];
     var _item =document.findAllElements("item");
-    _item.forEach((element) {
-      print(element.findElements("floor").first.text);
-      print(element.findElements("parking").first.text);
-      print(element.findElements("parkingarea").first.text);
+  _item.forEach((element) {
+      _parkingList.add(Parking(  element.findElements("datetm").first.text, element.findElements("floor").first.text, element.findElements("parking").first.text,
+          element.findElements("parkingarea").first.text));
     });
+    return _parkingList;
+  }else{
+    return null;
   }
 }
