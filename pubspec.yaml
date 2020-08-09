@@ -32,6 +32,7 @@ dependencies:
   http: any
   google_nav_bar: ^2.2.0
   line_icons: any
+  md2_tab_indicator: ^1.0.2
 
 dev_dependencies:
   flutter_test:
