@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:incheon_airport_parking/res/api.dart';
 import 'package:incheon_airport_parking/res/service_key.dart';
 
+import 'model/parking.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -41,24 +43,43 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    fetchParkingData(APIServiceKey.API_KEY);
+//    fetchParkingData(APIServiceKey.API_KEY);
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
+     
+      body:SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Text(
+                "인천국제공항 주차장 현황",
+                style: TextStyle(
+                  fontSize: 24
+                ),
+              ),
+            )),
+            Expanded(flex: 10,
+              child: FutureBuilder(
+                future: fetchParkingData(APIServiceKey.API_KEY),
+                builder: (context, sanpshot){
+                  if(sanpshot.hasData){
+                   List<Parking> _items = sanpshot.data;
+                   return ListView.builder(
+                      itemCount: _items.length,
+                     itemBuilder: (context, index){
+                     return ListTile(title: Text(_items[index].floor),);
+                   },);
+                  }else{
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
             ),
           ],
         ),
