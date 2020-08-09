@@ -2,7 +2,7 @@ import 'dart:html';
 
 import 'package:http/http.dart' as http;
 
-Future getParkingData(String serviceKey) async {
+Future fetchParkingData(String serviceKey) async {
   var response = await http.get("http://openapi.airport.kr/openapi/service/StatusOfParking/getTrackingParking"
       "?ServiceKey=$serviceKey");
 
