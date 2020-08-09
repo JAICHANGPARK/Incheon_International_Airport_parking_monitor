@@ -7,6 +7,7 @@ import 'package:line_icons/line_icons.dart';
 
 import 'model/parking.dart';
 import 'ui/home_page.dart';
+import 'ui/terminal_two_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -61,11 +62,18 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Expanded(child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text(
-                "인천국제공항 주차장 현황",
-                style: TextStyle(
-                  fontSize: 24
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "인천국제공항 주차장 현황",
+                    style: TextStyle(
+                        fontSize: 24
+                    ),
+                  ),
+                  IconButton(icon: Icon(Icons.settings,),iconSize: 28, onPressed: (){})
+                ],
+
               ),
             )),
             Expanded(flex: 10,
@@ -74,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   HomePage(),
                   TerminalOnePage(),
+                  TerminalTwoPage(),
                 ],
               )
             ),
