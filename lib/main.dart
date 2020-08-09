@@ -114,17 +114,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   GButton(
                     icon: Icons.local_parking_sharp,
-                    text: 'Likes',
+                    text: '터미널1',
                   ),
                   GButton(
                     icon: Icons.local_parking_sharp,
-                    text: 'Search',
+                    text: '터미널2',
                   ),
-                  GButton(
-                    icon: Icons.local_parking_sharp,
-                    text: 'Profile',
-                  ),
+
                 ],
+
                 selectedIndex: _selectedIndex,
                 onTabChange: (index) {
                   setState(() {
