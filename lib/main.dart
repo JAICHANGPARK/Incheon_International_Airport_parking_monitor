@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:incheon_airport_parking/res/api.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,7 +37,12 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getParkingData(serviceKey)
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
