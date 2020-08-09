@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:incheon_airport_parking/res/api.dart';
 import 'package:incheon_airport_parking/res/service_key.dart';
+import 'package:incheon_airport_parking/ui/terminal_one_page.dart';
 import 'package:line_icons/line_icons.dart';
 
 import 'model/parking.dart';
+import 'ui/home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -67,23 +69,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             )),
             Expanded(flex: 10,
-              child: FutureBuilder(
-                future: fetchParkingData(APIServiceKey.API_KEY),
-                builder: (context, sanpshot){
-                  if(sanpshot.hasData){
-                   List<Parking> _items = sanpshot.data;
-                   return ListView.builder(
-                      itemCount: _items.length,
-                     itemBuilder: (context, index){
-                     return ListTile(title: Text(_items[index].floor),);
-                   },);
-                  }else{
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
-              ),
+              child: IndexedStack(
+                index: _selectedIndex,
+                children: [
+                  HomePage(),
+                  TerminalOnePage(),
+                ],
+              )
             ),
           ],
         ),
