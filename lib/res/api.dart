@@ -19,7 +19,7 @@ Future fetchParkingData(String serviceKey) async {
     _item.forEach((element) {
       print(element.findElements("floor").first.text);
       print(element.findElements("parking").first.text);
-      print(element.findElements("parkingarea").first);
+      print(element.findElements("parkingarea").first.text);
     });
   }
 }
